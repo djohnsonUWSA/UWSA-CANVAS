@@ -7,10 +7,29 @@ var Tabs = null;
 
 $("a.conferences").hide(); // Remove Big Blue Conference Tool, USWA is utilizing Blackboard Collaborate & Ultra
 
-$('#wizard_add_students').hide(); // FIXED Element - Remove wizard to add students to courses.
-
 $('.use-as-front-page-menu-item').hide(); //FIXED Element - Remove option to set a page as the course home page.
 
+
+
+// Update Course Settings Page
+onPage(/\/settings/, function() {
+
+    // hide course annoucments settings
+    $('#course_show_announcements_on_home_page').hide();
+    $("label[for='course_show_announcements_on_home_page']").hide();
+
+    // hide number of announcements to display
+    $('#course_home_page_announcement_limit').hide();
+    $("label[for='course_home_page_announcement_limit']").hide();
+    
+    hasAnyRole("admin", "root_admin", function(isTeacher) {
+        if (isTeacher == false) {
+            // hide conclude and delete
+            $("a[href$='conclude']").hide();
+            $("a[href$='delete']").hide();
+        }
+    });
+});
 
 
 /*
@@ -271,7 +290,7 @@ function setCourseHomePage() {
             async: false,
 
             data: {
-                default_view: "modules"
+                'course[default_view]': "modules"
 
             }
         }));
