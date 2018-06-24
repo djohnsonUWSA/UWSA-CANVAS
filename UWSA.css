@@ -1,4 +1,6 @@
  input[name=manage_app_list_token]{visibility: hidden; display:none;}
+.delete_auth_link{visibility: hidden; display:none;}
+
 
 
  
