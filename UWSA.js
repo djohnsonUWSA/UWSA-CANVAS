@@ -10,7 +10,6 @@ $("a.conferences").hide(); // Remove Big Blue Conference Tool, USWA is utilizing
 $('.use-as-front-page-menu-item').hide(); //FIXED Element - Remove option to set a page as the course home page.
 
 $("a.context_external_tool_439").hide(); // Hide Master Course Create Tool Navigation
-<<<<<<< HEAD
 
 $("a.context_external_tool_2").hide(); // Hide Canvas Data Portal
 
@@ -47,30 +46,6 @@ $('#global_nav_profile_link').click(function () {
 
 
 
-=======
-
-$("a.context_external_tool_2").hide(); // Hide Canvas Data Portal
-
-// Redirect Master Course Create to Users Domain.
-$(document.body).on('click', '#help_tray a[href="https://uwsa.instructure.com/accounts/1/external_tools/439"]', function(e) {
-    e.preventDefault();
-    window.location.href = location.origin + "/accounts/1/external_tools/439";
-})
-
-
-// Add My Media link to user account slide out
-$('#global_nav_profile_link').click(function () {
-    setTimeout(function () {
-        if ($('._6q8Mxga .myMediaLink').length === 0) {
-            $('._6q8Mxga ul').append('<li class="ic-NavMenu-list-item myMediaLink"><a href="' + location.origin + '/users/' + ENV.current_user_id + '/external_tools/441" class="ic-NavMenu-list-item__link">My Media</a>');
-        }
-    }, 300);
-});
-
-
-
-
->>>>>>> 17dcfdc1cd722564d46878a479d126ea88d6565a
 //location.origin
 
 // Update Course Settings Page
