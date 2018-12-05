@@ -37,7 +37,7 @@ $('#global_nav_profile_link').click(function () {
 		
 		}
 		
-   }, 700);
+   }, 800);
 });
 
 
@@ -132,17 +132,17 @@ onPage(/\/courses/, function() {
 
 
                 // Tabs which are set to hidden must be done first. 
-                var tabx = findTab(Tabs, "discussions");
-                if (tabx.hidden != true) {
-                    setTabDetails("discussions", 8, "true");
-                    isChanged = true;
-                }
+              //  var tabx = findTab(Tabs, "discussions");
+              //  if (tabx.hidden != true) {
+              //      setTabDetails("discussions", 8, "true");
+              //      isChanged = true;
+              //  }
 
-                tabx = findTab(Tabs, "people");
-                if (tabx.hidden != true) {
-                    setTabDetails("people", 9, "true");
-                    isChanged = true;
-                }
+               // tabx = findTab(Tabs, "people");
+               // if (tabx.hidden != true) {
+              //      setTabDetails("people", 9, "true");
+               //     isChanged = true;
+               // }
 
 
                 tabx = findTab(Tabs, "pages");
@@ -182,45 +182,63 @@ onPage(/\/courses/, function() {
 
                 // FIXED TABS BEGIN
 
+               var i = 2;
 
                 var Syllabus = findTab(Tabs, "syllabus");
-                if (Syllabus.position != 2) {
+
+                if (Syllabus.position != i && Syllabus.hidden != true ) {
+                    console.log("sys");
+                    console.log(i);
                     isChanged = true;
-                    setTabDetails(Syllabus.id, 2);
+                    
+                    setTabDetails(Syllabus.id, i.toString() );
+                    i = i+ 1;
 
                 }
+                if (Syllabus.position == i && Syllabus.hidden != true ) {
+                        i=i+1;
+                }
+
                 var Ann = findTab(Tabs, "announcements");
-                if (Ann.position != 3) {
+                if (Ann.position != i) {
+                    console.log("I2 - " + i.toString());
                     isChanged = true;
-                    setTabDetails(Ann.id, 3);
+                    setTabDetails(Ann.id,i.toString());
+                    i = i+ 1;
+                }else i = i+ 1;
 
-                }
                 var assignments = findTab(Tabs, "assignments");
-                if (assignments.position != 4) {
+                if (assignments.position != i ) {
                     isChanged = true;
-                    setTabDetails(assignments.id, 4);
+                    setTabDetails(assignments.id, i.toString() );
+                    i = i+ 1;
+                }else i = i+ 1;
 
-                }
                 var Grades = findTab(Tabs, "grades");
-                if (Grades.position != 5) {
+                if (Grades.position != i ) {
                     isChanged = true;
-                    setTabDetails(Grades.id, 5);
+                    setTabDetails(Grades.id.toString());
+                    i = i+ 1;
+                }else i = i + 1;
 
-                }
                 var collaborations = findTab(Tabs, "collaborations");
-                if (collaborations.position != 6) {
+                if (collaborations.position != i && collaborations.hidden !=true) {
                     isChanged = true;
-                    setTabDetails(collaborations.id, 6);
-
+                    setTabDetails(collaborations.id, i.toString());
+                    i = i+ 1;
                 }
+                if (collaborations.position == i && collaborations.hidden !=true)
+                    i = i+ 1;
+
 
 
                 var Office = findTab(Tabs, "context_external_tool_7");
-                if (Office.position != 7) {
+                if (Office.position != i ) {
                     isChanged = true;
-                    setTabDetails(Office.id, 7);
+                    setTabDetails(Office.id, i.toString());
+                    i++;
 
-                }
+                }else i = i+ 1;
 
                 // FIXED TABS COMPLETE
 
@@ -263,7 +281,7 @@ function setTabDetails(id, Position, Hidden) {
     if (Hidden == null) Hidden = "false";
 
     var myURL = "/api/v1/courses/" + CourseID + "/tabs/" + id;
-
+    console.log (myURL);
     var jsPromise = Promise.resolve(
         $.ajax({
             type: "PUT",
