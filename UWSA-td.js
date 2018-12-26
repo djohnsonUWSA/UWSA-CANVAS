@@ -1,4 +1,4 @@
-$(".ic-Login__body").append("<a class='Button Button--secondary' href='https://uws.instructure.com/login/saml/19'>UW Faculty & Staff Login Here<a>");
+//$(".ic-Login__body").append("<a class='Button Button--secondary' href='https://uws.instructure.com/login/saml/19'>UW Faculty & Staff Login //Here<a>");
 
 
 

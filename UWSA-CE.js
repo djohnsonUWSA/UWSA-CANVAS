@@ -1,5 +1,5 @@
 
-$(".ic-Login__body").append("<a class='Button Button--secondary' href='https://uws.instructure.com/login/saml/19'>UW Faculty & Staff Login Here<a>");
+//$(".ic-Login__body").append("<a class='Button Button--secondary' href='https://uws.instructure.com/login/saml/19'>UW Faculty & Staff Login //Here<a>");
 
 // Add My Media link to user account slide out
 $('#global_nav_profile_link').click(function () {
