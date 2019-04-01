@@ -86,14 +86,14 @@ onPage(/\/courses/, function() {
 
             CourseID = getCourseId(); // Retreive the CourseID;
 
-
+            // Disabled 2.25.2019
             // Check / Set Course HomePage 
-            $.getJSON("/api/v1/courses/" + CourseID, function(result) {
+            // $.getJSON("/api/v1/courses/" + CourseID, function(result) {
 
-                // If Homepage has been altered, update it.  Note: Changes will not be seen till the page is reloaded.
-                if (result.default_view != "modules")
-                    setCourseHomePage();
-            });
+            //     // If Homepage has been altered, update it.  Note: Changes will not be seen till the page is reloaded.
+            //     if (result.default_view != "modules")
+            //         setCourseHomePage();
+            // });
 
 
             // Check / Set Course Announcments 
@@ -131,114 +131,127 @@ onPage(/\/courses/, function() {
                 // Step 3: Check other tabs
 
 
-                // Tabs which are set to hidden must be done first. 
-              //  var tabx = findTab(Tabs, "discussions");
-              //  if (tabx.hidden != true) {
-              //      setTabDetails("discussions", 8, "true");
-              //      isChanged = true;
-              //  }
-
-               // tabx = findTab(Tabs, "people");
-               // if (tabx.hidden != true) {
-              //      setTabDetails("people", 9, "true");
-               //     isChanged = true;
-               // }
 
 
-                tabx = findTab(Tabs, "pages");
-                if (tabx.hidden != true) {
-                    setTabDetails("pages", 10, "true");
-                    isChanged = true;
-                }
-                tabx = findTab(Tabs, "files");
-                if (tabx.hidden != true) {
-                    setTabDetails("files", 11, "true");
-                    isChanged = true;
-                }
-                tabx = findTab(Tabs, "quizzes");
-                if (tabx.hidden != true) {
-                    setTabDetails("quizzes", 12, "true");
-                    isChanged = true;
-                }
-                tabx = findTab(Tabs, "modules");
-                if (tabx.hidden != true) {
-                    setTabDetails("modules", 13, "true");
-                    isChanged = true;
-                }
-
-                tabx = findTab(Tabs, "outcomes");
-                if (tabx.hidden != true) {
-                    setTabDetails("modules", 14, "true");
-                    isChanged = true;
-                }
-
-                tabx = findTab(Tabs, "conferences");
-                if (tabx.hidden != true) {
-                    setTabDetails("conferences", 14, "true");
-                    isChanged = true;
-                }
-
-                // HIDDEN TABS DONE
-
-                // FIXED TABS BEGIN
 
                var i = 2;
 
-                var Syllabus = findTab(Tabs, "syllabus");
+               var assignments = findTab(Tabs, "assignments");
+               if (assignments.position != i && assignments.hidden !=true ) {
+                   isChanged = true;
+                   setTabDetails(assignments.id, i.toString() );
+                   i = i+ 1;
+               }else i = i+ 1;
 
-                if (Syllabus.position != i && Syllabus.hidden != true ) {
-                    console.log("sys");
-                    console.log(i);
-                    isChanged = true;
-                    
+               var discussions = findTab(Tabs, "discussions");
+               if (discussions.position != i && discussions.hidden !=true ) {
+                   isChanged = true;
+                   setTabDetails(discussions.id, i.toString() );
+                   i = i+ 1;
+               }else i = i+ 1;
+
+               var Grades = findTab(Tabs, "grades");
+               if (Grades.position != i  && Grades.hidden != true) {
+                   isChanged = true;
+                   setTabDetails(Grades.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var people = findTab(Tabs, "people");
+               if (people.position != i  && people.hidden !=true) {
+                   isChanged = true;
+                   setTabDetails(people.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var pages = findTab(Tabs, "pages");
+               if (pages.position != i  && pages.hidden !=true) {
+                   isChanged = true;
+                   setTabDetails(pages.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var files = findTab(Tabs, "files" && files.hidden !=true);
+               if (files.position != i ) {
+                   isChanged = true;
+                   setTabDetails(files.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var Syllabus = findTab(Tabs, "syllabus");
+               if (Syllabus.position != i && Syllabus.hidden != true ) {
+                   isChanged = true;
                     setTabDetails(Syllabus.id, i.toString() );
                     i = i+ 1;
+               }
+               else i = i+ 1;
+               
 
-                }
-                if (Syllabus.position == i && Syllabus.hidden != true ) {
-                        i=i+1;
-                }
+               var quizzes = findTab(Tabs, "quizzes");
+               if (quizzes.position != i && quizzes.hidden !=true ) {
+                   isChanged = true;
+                   setTabDetails(quizzes.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var modules = findTab(Tabs, "modules");
+               if (modules.position != i  && modules.hidden !=true ) {
+                   isChanged = true;
+                   setTabDetails(modules.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               tabx = findTab(Tabs, "conferences");
+               if (tabx.hidden != true ) {
+                   setTabDetails("conferences", 14, "true");
+                   isChanged = true;
+               }
+
+               var collaborations = findTab(Tabs, "collaborations");
+               if (collaborations.position != i && collaborations.hidden != true) {
+                   isChanged = true;
+                   setTabDetails(collaborations.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               
+               var SCROM = findTab(Tabs, "context_external_tool_5");
+               if (SCROM.position != i && SCROM.hidden != true) {
+                   isChanged = true;
+                   setTabDetails(SCROM.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
+
+               var CHAT = findTab(Tabs, "context_external_tool_6");
+               if (CHAT.position != i && CHAT.hidden != true ) {
+                   isChanged = true;
+                   setTabDetails(CHAT.id, i.toString());
+                   i = i+ 1;
+               }else i = i + 1;
 
                 var Ann = findTab(Tabs, "announcements");
-                if (Ann.position != i) {
-                    console.log("I2 - " + i.toString());
-                    isChanged = true;
+                if (Ann.position != i && Ann.hidden != true) {
+                 isChanged = true;
                     setTabDetails(Ann.id,i.toString());
                     i = i+ 1;
                 }else i = i+ 1;
 
-                var assignments = findTab(Tabs, "assignments");
-                if (assignments.position != i ) {
-                    isChanged = true;
-                    setTabDetails(assignments.id, i.toString() );
+                var Outcomes = findTab(Tabs, "outcomes");
+                if (Outcomes.position != i && Outcomes.hidden != true) {
+                 isChanged = true;
+                    setTabDetails(Outcomes.id,i.toString());
                     i = i+ 1;
                 }else i = i+ 1;
 
-                var Grades = findTab(Tabs, "grades");
-                if (Grades.position != i ) {
-                    isChanged = true;
-                    setTabDetails(Grades.id.toString());
-                    i = i+ 1;
-                }else i = i + 1;
-
-                var collaborations = findTab(Tabs, "collaborations");
-                if (collaborations.position != i && collaborations.hidden !=true) {
-                    isChanged = true;
-                    setTabDetails(collaborations.id, i.toString());
-                    i = i+ 1;
-                }
-                if (collaborations.position == i && collaborations.hidden !=true)
-                    i = i+ 1;
-
-
-
                 var Office = findTab(Tabs, "context_external_tool_7");
-                if (Office.position != i ) {
+                if (Office.position != i && Office.hidden != true) {
                     isChanged = true;
                     setTabDetails(Office.id, i.toString());
                     i++;
 
                 }else i = i+ 1;
+               
+              
 
                 // FIXED TABS COMPLETE
 
