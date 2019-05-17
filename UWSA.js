@@ -8,6 +8,7 @@ var Tabs = null;
 $("a.conferences").hide(); // Remove Big Blue Conference Tool, USWA is utilizing Blackboard Collaborate & Ultra
 
 $('.use-as-front-page-menu-item').hide(); //FIXED Element - Remove option to set a page as the course home page.
+$('.choose_home_page_link').hide();
 
 $("a.context_external_tool_439").hide(); // Hide Master Course Create Tool Navigation
 
@@ -56,8 +57,8 @@ onPage(/\/settings/, function() {
     $("label[for='course_show_announcements_on_home_page']").hide();
 
     // hide number of announcements to display
-    $('#course_home_page_announcement_limit').hide();
-    $("label[for='course_home_page_announcement_limit']").hide();
+  // $('#course_home_page_announcement_limit').hide();
+   // $("label[for='course_home_page_announcement_limit']").hide();
     
     hasAnyRole("admin", "root_admin", function(isTeacher) {
         if (isTeacher == false) {
@@ -75,7 +76,7 @@ Fixed Elements Enforcement
 */
 onPage(/\/courses/, function() {
 
-    $("#choose_home_page").hide(); // FIXED Element - Remove option to choose home page
+  //  $("#choose_home_page").hide(); // FIXED Element - Remove option to choose home page
 
     // If user has teacher or higher access verify navigation and override if needed.
     hasAnyRole("teacher", "ta", "admin", "root_admin", function(isTeacher) {
@@ -100,13 +101,13 @@ onPage(/\/courses/, function() {
             $.getJSON("/api/v1/courses/" + CourseID + "/settings", function(result) {
                 CourseSettings = result;
 
-                // If course announcements setting don't match update them.
-                if (CourseSettings.show_announcements_on_home_page != true || CourseSettings.home_page_announcement_limit != 3) {
-                    {
+            ///If course announcements setting don't match update them.
+               if (CourseSettings.show_announcements_on_home_page != true ) //|| CourseSettings.home_page_announcement_limit != 3) {
+                 {   {
                         setCourseSettings();
                     }
                     isChanged = true;
-                }
+                } 
 
             });
 
@@ -179,9 +180,10 @@ onPage(/\/courses/, function() {
                } i = i + 1;
 
                var files = findTab(Tabs, "files" );
-               if (files.position != i ) { // && files.hidden !=true ) {
+               if (files.position != i  && files.hidden !=true ) {
                    isChanged = true;
-                   setTabDetails(files.id, i.toString(), files.hidden);
+                 
+                   setTabDetails(files.id, i.toString(), "true");
                    i = i+ 1;
                }else  i = i + 1;
 
@@ -334,8 +336,8 @@ function setCourseSettings() {
 
 
             data: {
-                show_announcements_on_home_page: true,
-                home_page_announcement_limit: "3"
+                show_announcements_on_home_page: true  //,
+                //home_page_announcement_limit: "3"
 
             }
         }));
