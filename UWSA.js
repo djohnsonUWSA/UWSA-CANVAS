@@ -180,7 +180,11 @@ onPage(/\/courses/, function() {
                } i = i + 1;
 
                var files = findTab(Tabs, "files" );
-               if (files.position != i  && files.hidden !=true ) {
+			   if(typeof files.hidden !== undefined)
+{
+	files.hidden = false;
+} 
+               if (files.position != i  || files.hidden !=true ) {
                    isChanged = true;
                  
                    setTabDetails(files.id, i.toString(), "true");
